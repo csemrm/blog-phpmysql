@@ -15,6 +15,7 @@ try {
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
 
     $categories = $stmt->fetchAll();
+ // echo '<pre>';  print_r($categories);echo '</pre>';
     ?>
 
 
@@ -75,13 +76,6 @@ try {
                                     <?php
                                 }
                                 ?>
-
-
-
-
-
-
-
                             </ul>
                         </li>
 

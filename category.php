@@ -14,27 +14,33 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "Connected successfully";
 
-
-
-
     $stmt = $conn->prepare("SELECT * FROM `category` WHERE `navigation` = 1;");
+
+    $stmt->execute();
+    $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+    $categories = $stmt->fetchAll();
+    
+    //SELECT * FROM `article` WHERE `category_id` = 2
+
+
+    $query = $conn->prepare("SELECT * FROM `article` WHERE `category_id` = :category_id ;");
+    $query->bindParam(':category_id', $category_id);
+    $query->setFetchMode(PDO::FETCH_ASSOC);
+    $query->execute();
+
+    $articles = $query->fetchAll();
+
+    // echo '<pre>'; print_r($articles); echo '</pre>';
+
+    $stmt = $conn->prepare("SELECT * FROM `category` WHERE `id` = $category_id;");
+    // $stmt->bindParam(':category_id', ($category_id), PDO::PARAM_INT);
     $stmt->setFetchMode(PDO::FETCH_ASSOC);
     $stmt->execute();
 
-    $categories = $stmt->fetchAll();
-
-    $stmt = $conn->prepare("SELECT * FROM `article` WHERE `category_id` = :category_id ;");
-    $stmt->bindParam(':category_id', $category_id);
-    $stmt->execute();
-
-    $articles = $stmt->fetchAll();
-
-    $stmt = $conn->prepare("SELECT * FROM `category` WHERE `id` = :category_id;");
-    $stmt->bindParam(':category_id', ($category_id), PDO::PARAM_INT);
-
-    $stmt->execute();
-
     $categoryone = $stmt->fetch();
+
+    //echo '<pre>'; print_r($categoryone); echo '</pre>';
     ?>
 
 
@@ -144,6 +150,9 @@ try {
 
 
                         <?php
+                        
+
+
                         foreach ($articles as $key => $article) {
                             ?>
                             <article class="post">
@@ -156,9 +165,12 @@ try {
                                     <div class="post-header-line-1">
                                         <div class="post-date">
                                             <i class="fa fa-clock-o" aria-hidden="true"></i> <?php
-                                            $date = date_create_from_format('Y-m-d H:i:s', $article['created']);
-                                            echo $date->format('d / m / Y');
-                                            ?>
+                                            
+                                            
+                        $date = date_create_from_format('Y-m-d H:i:s', $article['created']);
+                        echo $date->format('d / m / Y');
+                            ?>
+                                            
                                         </div>
                                     </div>
                                 </header>

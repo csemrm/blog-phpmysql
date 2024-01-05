@@ -3,27 +3,35 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/functions.php</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/footer.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/index.php</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/header.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/index.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/error/page-not-found.php</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/database-connection.php</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/indexxx.html</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/js/main.js</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/pdo.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/category.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/category.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/article.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/single.html</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/category.html</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/.htaccess</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/mysqli_db_connect.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/error/error.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/articles.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/readme.md</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/js/bootstrap.min.js</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/css/styles.css</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/js/jquery-3.5.1.min.js</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/single.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/admin-footer.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/database-connection.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/pdo.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/alt-text-edit.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/account.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/admin-header.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/article-delete.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/js/bootstrap.min.js</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/categories.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/includes/banner.php</file>
             <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/phpinfo.php</file>
-            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/single.php</file>
+            <file>file:/Volumes/Backup/liitcom/PHP-MYSQL/blog/admin/category-delete.php</file>
         </group>
     </open-files>
 </project-private>

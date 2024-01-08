@@ -62,7 +62,7 @@ $authors = pdo($pdo, $sql)->fetchAll();                     // Get all members
 $sql = "SELECT id, name FROM category;";             // SQL to get all categories
 $categories = pdo($pdo, $sql)->fetchAll();                  // Get all categories
 //
-/*
+
 // Part B: Get and validate form data
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {                 // If form submitted
     // If file bigger than limit in php.ini or .htaccess store error message - NOTE: Line updated from book
@@ -95,14 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {                 // If form submitted
 
 // Validate article data and create error messages if it is invalid
     
-    
-    $errors['title'] = is_text($article['title'], 1, 80) ? '' : 'Title must be 1-80 characters';
-    $errors['summary'] = is_text($article['summary'], 1, 254) ? '' : 'Summary must be 1-254 characters';
-    $errors['content'] = is_text($article['content'], 1, 100000) ? '' : 'Article must be 1-100,000 characters';
-    $errors['member'] = is_member_id($article['member_id'], $authors) ? '' : 'Please select an author';
-    $errors['category'] = is_category_id($article['category_id'], $categories) ? '' : 'Please select a category';
-    
-    
+ 
 
     // Otherwise
     $arguments = $article;                                   // Save data as $arguments
@@ -110,10 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {                 // If form submitted
         $pdo->beginTransaction();                            // Start transaction
         if ($destination) {                                  // If have valid image
             // Crop and save file
-            $imagick = new \Imagick($temp);                  // Object to represent image
-            $imagick->cropThumbnailImage(1200, 700);         // Create cropped image
-            $imagick->writeImage($destination);              // Save file
-
+            
             $sql = "INSERT INTO image (file, alt) 
                         VALUES (:file, :alt);";                  // SQL to add image
             // Run SQL to add image to image table
@@ -155,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {                 // If form submitted
     }
 
     $article['image_file'] = $saved_image ? $article['image_file'] : ''; 
-}*/
+}
 ?>
 <?php include '../includes/admin-header.php'; ?>
 <form action="article.php?id=<?= $id ?>" method="POST" enctype="multipart/form-data">

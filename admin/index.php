@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {     // If form submitted
         $user_password
     ]);
     $result = $stmt->fetch();
-    print_r($result);
     if (count($result)) { // If details correct
          $_SESSION['logged_in'] = true;
         

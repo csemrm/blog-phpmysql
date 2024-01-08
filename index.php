@@ -1,29 +1,18 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "root";
+declare(strict_types=1);                                 // Use strict types
+include 'src/bootstrap.php';                          // Setup file
 
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=phpmysql", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //echo "Connected successfully";
+$articles    = $cms->getArticle()->getAll(true, null, null, 6); // Get latest article summaries
+ 
 
-    $stmt = $conn->prepare("SELECT * FROM `category` WHERE `navigation` = 1;");
+$navigation  = $cms->getCategory()->getAll();            // Get categories
+ 
 
-    $stmt->execute();
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-
-    $categories = $stmt->fetchAll();
- // echo '<pre>';  print_r($categories);echo '</pre>';
-    ?>
-
-
-    <?php
-} catch (PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-}
-?> 
+$section     = '';                                       // Current category
+$title       = 'PHP and MySQL Traning';                          // HTML <title> content
+$description = 'A collective of creatives for hire';     // Meta description content
+ 
+?>
 
 <!doctype html>
 <html lang="en">
@@ -37,7 +26,7 @@ try {
         <link href="css/font-awesome.min.css" rel="stylesheet"/>
         <link href="css/styles.css" rel="stylesheet"/>
 
-        <title>Cihuatl CSS Template</title>
+        <title><?php echo $title?></title>
     </head>
     <body>
         <div class="container-fluid bg-dark">
@@ -69,7 +58,7 @@ try {
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                                 <?php
-                                foreach ($categories as $key => $category) {
+                                foreach ($navigation as $key => $category) {
                                    // echo $category['name'];
                                     ?>
                                 <li><a class="dropdown-item" href="category.php?category_id=<?php echo $category['id'] ?>"><?php echo $category['name']; ?></a></li>
@@ -112,65 +101,34 @@ try {
         </div>
 
         <header class="container py-5" id="header">
-            <h1><a href="#">Cihuatl</a></h1>
-            <p class="site-description">A life without limits</p>
+            <h1><a href="#"><?php echo $title?></a></h1>
+            <p class="site-description"><?php echo $description?></p>
         </header>
 
         <div class="container mb-4">
-            <div id="slider" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#slider" data-slide-to="0" class="active"></li>
-                    <li data-target="#slider" data-slide-to="1"></li>
-                    <li data-target="#slider" data-slide-to="2"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">First slide</text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <a href="./single.html"><h5>First slide label</h5></a>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">Second slide</text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <a href="./single.html"><h5>Second slide label</h5></a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="550" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">Thrid slide</text></svg>
-                        <div class="carousel-caption d-none d-md-block">
-                            <a href="./single.html"><h5>Third slide label</h5></a>
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-                        </div>
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#slider" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
+            
         </div>
 
         <div class="container-fluid" id="content-wrapper">
             <div class="container" id="main">
                 <div class="row">
                     <section class="col-12 col-md-8 col-lg-9" id="posts">
+                        
+                        <?php foreach ($articles as $key => $article) {
+                          
+                            
+                        ?>
+                        
                         <article class="post">
                             <header class="post-header text-center mb-3">
                                 <div class="post-title">
                                     <a href="./single.html">
-                                        <h2>Healthy life</h2>
+                                        <h2><?php echo $article['title'] ?></h2>
                                     </a>
                                 </div>
                                 <div class="post-header-line-1">
                                     <div class="post-date">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i> 16 / 06 / 2020
+                                        <i class="fa fa-clock-o" aria-hidden="true"></i> <?php echo format_date ($article['created']) ?>
                                     </div>
                                 </div>
                             </header>
@@ -181,15 +139,12 @@ try {
                                         <a href="#">Life</a>
                                     </div>
                                     <div class="post-author">
-                                        <span>by </span> Francisco
+                                        <span>by </span> <?php echo $article['author'] ?>
                                     </div>
-                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">Post thumbnail</text></svg>
-                                </div>
+                                    <img src="uploads/<?php echo $article['image_file']  ?>" width="800" height="400" alt="<?php $article['image_alt'] ?>"/>
+                                    </div>
                                 <div class="post-content">
-                                    <p>Ea eam labores imperdiet, apeirian democritum ei nam, doming neglegentur ad vis. Ne malorum
-                                        ceteros feugait quo, ius ea liber offendit placerat, est habemus aliquyam legendos id.
-                                        Eam no corpora maluisset definitiones, eam mucius malorum id. Quo ea idque commodo utroque,
-                                        per ex eros etiam accumsan.</p>
+                                    <?php echo $article['summary'] ?>
                                 </div>
                             </main>
                             <footer class="post-footer row">
@@ -207,54 +162,9 @@ try {
                                     <a href="./single.html#comments"></a>3 Comments</a>
                                 </div>
                             </footer>
-                        </article>
-                        <article class="post">
-                            <header class="post-header text-center mb-3">
-                                <div class="post-title">
-                                    <a href="./single.html">
-                                        <h2>Great Movies</h2>
-                                    </a>
-                                </div>
-                                <div class="post-header-line-1">
-                                    <div class="post-date">
-                                        <i class="fa fa-clock-o" aria-hidden="true"></i> 16 / 06 / 2020
-                                    </div>
-                                </div>
-                            </header>
-                            <main class="post-body">
-                                <div class="post-thumbnail">
-                                    <div class="post-tags">
-                                        <a href="#">Health</a>
-                                        <a href="#">Life</a>
-                                    </div>
-                                    <div class="post-author">
-                                        <span>by </span> Francisco
-                                    </div>
-                                    <svg class="bd-placeholder-img bd-placeholder-img-lg d-block" width="800" height="400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: First slide"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"></rect><text x="50%" y="50%" fill="#555" dy=".3em">Post thumbnail</text></svg>
-                                </div>
-                                <div class="post-content">
-                                    <p>Ea eam labores imperdiet, apeirian democritum ei nam, doming neglegentur ad vis. Ne malorum
-                                        ceteros feugait quo, ius ea liber offendit placerat, est habemus aliquyam legendos id.
-                                        Eam no corpora maluisset definitiones, eam mucius malorum id. Quo ea idque commodo utroque,
-                                        per ex eros etiam accumsan.</p>
-                                </div>
-                            </main>
-                            <footer class="post-footer row">
-                                <div class="read-more col-12 col-sm-4 text-center text-sm-left">
-                                    <a href="./single.html">Read more <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="post-share col-6 col-sm-4 text-left text-sm-center">
-                                    <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-whatsapp" aria-hidden="true"></i></a>
-                                    <a href="#"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
-                                </div>
-                                <div class="post-comments-number col-6 col-sm-4 text-right">
-                                    <a href="./single.html#comments">3 Comments</a>
-                                </div>
-                            </footer>
-                        </article>
+                        </article> 
+                        
+                        <?php } ?>
                     </section>
 
                     <aside class="col-12 col-md-4 col-lg-3" id="sidebar">
